@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS ejercicios;
 DROP TABLE IF EXISTS musculos;
 DROP TABLE IF EXISTS usuarios;  
 
@@ -15,4 +16,12 @@ CREATE TABLE usuarios (
 CREATE TABLE musculos (
     id_musculo NUMERIC(5) NOT NULL CONSTRAINT pk_musculos PRIMARY KEY,
     nombre_musculo VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE ejercicios (
+    id_ejercicio NUMERIC(5) NOT NULL CONSTRAINT pk_ejercicios PRIMARY KEY,
+    nombre_ejercicio VARCHAR(100) NOT NULL,
+    descripcion_ejercicio VARCHAR(500) NOT NULL,
+    id_musculo NUMERIC(5) NOT NULL,
+    CONSTRAINT fk_musculos FOREIGN KEY (id_musculo) REFERENCES musculos(id_musculo)
 );
