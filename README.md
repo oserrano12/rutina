@@ -25,15 +25,15 @@ su objetivo es facilitar el seguimiento diario del entrenamiento y generar repor
 - src/exportador_excel.py — Generador de reportes en Excel
 
 ## 🧩 Base de datos: Entidades previstas
--🧍‍♂️ Usuarios: nombre, edad, nivel, objetivos
+- 🧍‍♂️ Usuarios: nombre, edad, nivel, objetivos
 
--🏋️‍♀️ Ejercicios: nombre, tipo (casa/gimnasio), músculos trabajados, equipamiento requerido
+- 🏋️‍♀️ Ejercicios: nombre, tipo (casa/gimnasio), músculos trabajados, equipamiento requerido
 
--💪 Músculos: agrupaciones musculares (pecho, espalda, piernas, etc.)
+- 💪 Músculos: agrupaciones musculares (pecho, espalda, piernas, etc.)
 
--📅 Sesiones: fecha, usuario, ejercicios realizados, series, repeticiones, intensidad, descansos
+- 📅 Sesiones: fecha, usuario, ejercicios realizados, series, repeticiones, intensidad, descansos
 
--📊 Progreso: métricas resumidas por semana o mes para el reporte
+- 📊 Progreso: métricas resumidas por semana o mes para el reporte
 
 ## 🖥️ Interfaz gráfica
 La aplicación contará con una GUI que permitirá:
