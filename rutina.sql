@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS musculos;
 DROP TABLE IF EXISTS usuarios;  
 
 CREATE TABLE usuarios (
@@ -9,4 +10,9 @@ CREATE TABLE usuarios (
     estatura_usuario NUMERIC(3) NOT NULL CONSTRAINT ck2_usuarios CHECK (estatura_usuario BETWEEN 130 AND 250),
     peso_usuario NUMERIC(3,2) NOT NULL CONSTRAINT ck3_usuarios CHECK (peso_usuario BETWEEN 30.00 AND 200.00),
     genero_usuario VARCHAR(10) NOT NULL CONSTRAINT ck4_usuarios CHECK (genero_usuario IN ('Masculino', 'Femenino', 'Otro'))
+);
+
+CREATE TABLE musculos (
+    id_musculo NUMERIC(5) NOT NULL CONSTRAINT pk_musculos PRIMARY KEY,
+    nombre_musculo VARCHAR(100) NOT NULL
 );
