@@ -82,7 +82,7 @@ Proyecto creado por:
 
 Jordy Jaimes @JorgeJordyJaimes
 
-Oscar Serrano @osserrano12
+Oscar Serrano @oserrano12
 
 📄 Licencia
 Este proyecto es de uso personal. Puede compartirse libremente con atribución. Se incluirá una licencia si se publica públicamente.
