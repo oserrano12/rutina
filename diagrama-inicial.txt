@@ -1,0 +1,23 @@
+TABLA USUARIOS
+	id_usuario NUMERIC(10)
+	nombre_usuario VARCHAR(30)
+	apellido_usuario VARCHAR(30)
+	edad_usuario NUMERIC(2)
+	peso_usuario NUMERIC(3,2)
+	estarura_usuario NUMERIC(3)
+	imc_usuario NUMERIC(2,2)
+	genero_usuario VARCHAR(1)
+
+TABLA MUSCULOS
+	id_musculo NUMERIC(5)
+	nombre_musculo VARCHAR(100)
+
+TABLA EJERCICIOS
+	id_ejercicio NUMERIC(5)
+	nombre_ejercicio VARCHAR(100)
+	musculo1 VARCHAR(50)
+	musculo2 VARCHAR(50)
+	musculo3 VARCHAR(50)
+	id_musculo FK
+
+TABLA 
