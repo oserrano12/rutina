@@ -25,3 +25,10 @@ CREATE TABLE ejercicios (
     id_musculo NUMERIC(5) NOT NULL,
     CONSTRAINT fk_musculos FOREIGN KEY (id_musculo) REFERENCES musculos(id_musculo)
 );
+
+CREATE TABLE grupos_musculares (
+    id_grupo NUMERIC(5) NOT NULL CONSTRAINT pk_grupos PRIMARY KEY,
+    nombre_grupo VARCHAR(100) NOT NULL,
+    id_musculo NUMERIC(5) NOT NULL,
+    CONSTRAINT fk_musculos_grupos FOREIGN KEY (id_musculo) REFERENCES musculos(id_musculo
+);
