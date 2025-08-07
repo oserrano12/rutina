@@ -9,3 +9,5 @@ INSERT INTO ejercicios (nombre_ejercicio, descripcion_ejercicio, id_musculo) VAL
 ('Zancadas', 'Ejercicio para trabajar las piernas y glúteos.', 1),
 ('Press militar', 'Ejercicio para fortalecer los hombros y tríceps.', 2),
 ('Peso muerto', 'Ejercicio compuesto para trabajar la espalda baja, glúteos y piernas.', 3);
+
+INSERT
