@@ -1,23 +1,55 @@
+Se requiere una base de datos en PostgreSQL para llevar un control de rutinas de ejercicios en casa y gimnasio. Al mismo tiempo, se espera poder crear
+reportes periodicos (semanal/quincenal/mensual/trimestral/semestral/anual) de cada usuario.
+
+Para ello, se requiere:
+
+- Una tabla de usuarios y sus datos personales.
+- Una tabla de ejercicios disponibles para poder hacer tanto en casa como en gimnasio
+- Una tabla de grupos musculares, para poder identificar qué parte del cuerpo se trabajó
+- Una tabla de los músculos que trabajará cada ejercicio
+- Una tabla de rutinas recomendadas de manera predefinida si no se quiere crear una (es necesario crear opciones de niveles: principiante, intermedio, avanzado)
+- Una tabla que soluciona un problema que puede surgir como el de asignar muchos músculos a muchos ejercicios, es decir, una relación muchos a muchos es necesaria una tabla puente
+
+
 TABLA USUARIOS
-	id_usuario NUMERIC(10)
-	nombre_usuario VARCHAR(30)
-	apellido_usuario VARCHAR(30)
-	edad_usuario NUMERIC(2)
-	peso_usuario NUMERIC(3,2)
-	estarura_usuario NUMERIC(3)
-	imc_usuario NUMERIC(2,2)
-	genero_usuario VARCHAR(1)
+	id_usuario: id único, primary key, auto incremental
+	nombre_usuario: nombre o nombres del usuario, ambos nombres pueden ir en un solo ingreso, *máximo 100 letras, ntexto obligatorio
+	apellido_usuario apellidos o apellidos del usuario, ambos apellidos pueden ir en un solo ingreso, máximo 100 letras, texto obligatorio
+	edad_usuario: debe ser un valor numérico entero, con restricción entre 14 y 80, 
+	peso_usuario: debe ser un valor numérico, se admiten números reales, con restricción entre 20 y 250 kilos,
+	estarura_usuario: debe ser un valor numérico, número racional, restricción entre 130 y 220 centimetros,
+	genero_usuario: variable categórica con 3 categorías: masculino, femenino, otro
+
+TABLA GRUPOS_MUSCULARES
+	id_grupo_muscular: id único, primary key, auto incremental
+	nombre_grupo_muscular: texto obligatorio, valor único, máximo 50 caracteres
 
 TABLA MUSCULOS
-	id_musculo NUMERIC(5)
-	nombre_musculo VARCHAR(100)
+	id_musculo: id único, primary key, auto incremental
+	nombre_musculo: texto obligatorio, valor único, máximo 100 caracteres
+	id_grupo_muscular: llave foranea, se debe relacionar con la tabla de grupos musculares
 
 TABLA EJERCICIOS
-	id_ejercicio NUMERIC(5)
-	nombre_ejercicio VARCHAR(100)
-	musculo1 VARCHAR(50)
-	musculo2 VARCHAR(50)
-	musculo3 VARCHAR(50)
-	id_musculo FK
+	id_ejercicio: id único, primary key, auto incremental
+	nombre_ejercicio: nombre en español del ejercicio, texto obligatorio, valor único, máximo 100 caracteres
+	descripcion_ejercicio: descripción del ejercicio, los utensilios necesitados (máquinas o si no)
+	tipo_ejercicio: texto obligatorio, el tipo de ejercicio debe tener solo dos opciones: (casa, gimnasio), valor único
 
-TABLA DE GRUPOS_MUSCULARES
+
+- La siguiente tabla es una tabla puente, ya que el proyecto requiere saber qué músculos trabaja cada ejercicio. 
+- Esto genera una relación muchos a muchos; por lo tanto, no sería posible incluir más de un músculo por ejercicio directamente en las tablas de ejercicios o músculos sin romper la normalización.
+- Además, las bases de datos relacionales no permiten relaciones muchos a muchos de forma directa entre dos tablas.
+
+TABLA EJERCICIO_MUSCULO
+	id_ejercicio: valor numérico, máximo 100 caracteres, id del ejercicio que se hará, se introduce manualmente, foreing key 
+	id_musculo: valor numérico, máximo 100 caracteres, id del musculo afectado, se introduce manualmente, es una foreing key
+	funcion: texto único, describe la función del músculo en cada cruce entre ejercicio y músculo (principal, secundario, estabilizador)
+	pk única: Aunque esto es una tabla puenta, el cruce entre músculos y ejercicios es en sí una clave primaria o valor único de esta tabla.
+
+TABLA RUTINAS
+	id_rutina: id único, primary key, auto incremental
+	nombre_rutina: texto obligatorio, máximo 100 caracteres, 
+	
+
+
+	
