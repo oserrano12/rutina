@@ -48,8 +48,11 @@ TABLA EJERCICIO_MUSCULO
 
 TABLA RUTINAS
 	id_rutina: id único, primary key, auto incremental
-	nombre_rutina: texto obligatorio, máximo 100 caracteres, 
-	
+	nombre_rutina: texto obligatorio, máximo 100 caracteres
 
-
-	
+TABLA: ejercicios_en_rutina (otra tabla puente)
+    - id_rutina: referencia a rutina
+    - id_ejercicio: referencia a ejercicio
+    - series: número
+    - repeticiones: número
+    - orden: número (para ordenar en la rutina)
