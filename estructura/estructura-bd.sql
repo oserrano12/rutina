@@ -16,7 +16,7 @@ CREATE TABLE usuarios (
     email_usuario VARCHAR(100) NOT NULL,
     edad_usuario NUMERIC(2) NOT NULL CONSTRAINT ck1_usuarios CHECK (edad_usuario BETWEEN 14 AND 80),
     estatura_usuario NUMERIC(3) NOT NULL CONSTRAINT ck2_usuarios CHECK (estatura_usuario BETWEEN 130 AND 250),
-    peso_usuario NUMERIC(3,2) NOT NULL CONSTRAINT ck3_usuarios CHECK (peso_usuario BETWEEN 30.00 AND 200.00),
+    peso_usuario NUMERIC(5,2) NOT NULL CONSTRAINT ck3_usuarios CHECK (peso_usuario BETWEEN 30.00 AND 200.00),
     genero_usuario VARCHAR(10) NOT NULL CONSTRAINT ck4_usuarios CHECK (LOWER(genero_usuario) IN ('masculino', 'femenino', 'otro'))
 );
 
