@@ -67,3 +67,56 @@ CREAR TABLA ejercicios_en_rutina:
     intensidad: texto máximo 100 caracteres, valores permitidos: 'baja', 'media', 'alta'
     CLAVE PRIMARIA COMPUESTA: (id_rutina, id_ejercicio)
     ELIMINAR EN CASCADA al eliminar rutina
+
+### POSIBLES tablas
+
+CREAR TABLA sesiones_entrenamiento:
+    id_sesion: entero auto-incremental, clave primaria
+    id_usuario: entero, clave foránea hacia usuarios
+    id_rutina: entero, clave foránea hacia rutinas
+    fecha_sesion: fecha, obligatorio
+    duracion_minutos: entero pequeño
+    notas: texto máximo 500 caracteres
+
+CREAR TABLA progreso_usuario:
+    id_progreso: entero auto-incremental, clave primaria
+    id_usuario: entero, clave foránea hacia usuarios
+    fecha_medicion: fecha, obligatorio
+    peso_actual: decimal(5,2)
+    medida_pecho: decimal(4,1)
+    medida_cintura: decimal(4,1)
+    medida_brazo: decimal(4,1)
+    notas: texto máximo 300 caracteres
+
+CREAR TABLA rendimiento_ejercicio:
+    id_rendimiento: entero auto-incremental, clave primaria
+    id_sesion: entero, clave foránea hacia sesiones_entrenamiento(id_sesion), obligatorio
+    id_ejercicio: entero pequeño, clave foránea hacia ejercicios(id_ejercicio), obligatorio
+    serie_numero: entero pequeño mayor a 0, obligatorio
+    repeticiones_realizadas: entero pequeño mayor o igual a 0, obligatorio
+    peso_utilizado: decimal(5,2) mayor o igual a 0, opcional
+    tiempo_descanso_seg: entero pequeño mayor o igual a 0, opcional
+    dificultad_percibida: entero pequeño entre 1 y 10, opcional (escala RPE)
+    notas: texto máximo 200 caracteres, opcional
+    
+    RELACIONES:
+        - ELIMINAR EN CASCADA al eliminar sesión de entrenamiento
+        - RESTRINGIR eliminación si se referencia ejercicio
+
+CREAR TABLA objetivos_usuario:
+    id_objetivo: entero auto-incremental, clave primaria
+    id_usuario: entero, clave foránea hacia usuarios(id_usuario), obligatorio
+    tipo_objetivo: texto máximo 30 caracteres, obligatorio
+        valores permitidos: 'peso', 'masa_muscular', 'fuerza', 'resistencia', 'medida_corporal'
+    descripcion: texto máximo 200 caracteres, obligatorio
+    valor_objetivo: decimal(6,2), opcional (valor numérico del objetivo)
+    unidad_medida: texto máximo 20 caracteres, opcional (kg, cm, minutos, repeticiones, etc.)
+    fecha_inicio: fecha, obligatorio, valor por defecto: fecha actual
+    fecha_limite: fecha, opcional
+    estado: texto máximo 20 caracteres, obligatorio, valor por defecto: 'activo'
+        valores permitidos: 'activo', 'completado', 'pausado', 'cancelado'
+    fecha_completado: fecha, opcional
+    
+    RESTRICCIONES:
+        - fecha_limite debe ser posterior a fecha_inicio (si se especifica)
+        - ELIMINAR EN CASCADA al eliminar usuario
