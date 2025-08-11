@@ -35,7 +35,8 @@ CREATE TABLE musculos (
 CREATE TABLE ejercicios (
     id_ejercicio SMALLSERIAL PRIMARY KEY,
     nombre_ejercicio VARCHAR(100) NOT NULL UNIQUE,
-    descripcion_ejercicio VARCHAR(500) NOT NULL
+    descripcion_ejercicio VARCHAR(500) NOT NULL,
+    tipo_ejercicio VARCHAR (50) NOT NULL CONSTRAINT ck_ejercicios CHECK (LOWER(tipo_ejercicio) IN ('casa','gimnasio', 'ambos')
 );
 
 CREATE TABLE ejercicios_musculos (
