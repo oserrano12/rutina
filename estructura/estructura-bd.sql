@@ -36,7 +36,7 @@ CREATE TABLE ejercicios (
     id_ejercicio SMALLSERIAL PRIMARY KEY,
     nombre_ejercicio VARCHAR(100) NOT NULL UNIQUE,
     descripcion_ejercicio VARCHAR(500) NOT NULL,
-    tipo_ejercicio VARCHAR (50) NOT NULL CONSTRAINT ck_ejercicios CHECK (LOWER(tipo_ejercicio) IN ('casa','gimnasio', 'ambos')
+    tipo_ejercicio VARCHAR (50) NOT NULL CONSTRAINT ck_ejercicios CHECK (LOWER(tipo_ejercicio) IN ('casa', 'gimnasio', 'ambos'))
 );
 
 CREATE TABLE ejercicios_musculos (
@@ -58,13 +58,13 @@ CREATE TABLE rutinas (
 );
 
 CREATE TABLE ejercicios_en_rutina (
-    id_rutina    INT      NOT NULL,
+    id_rutina    INT NOT NULL,
     id_ejercicio SMALLINT NOT NULL,   
     series       SMALLINT NOT NULL CONSTRAINT ck1_ejercicios_en_rutina CHECK (series > 0),
     repeticiones SMALLINT NOT NULL CONSTRAINT ck2_ejercicios_en_rutina CHECK (repeticiones > 0),
     descanso_seg SMALLINT CONSTRAINT ck3_ejercicios_en_rutina CHECK (descanso_seg IS NULL OR descanso_seg >= 0),            
     orden_ejercicio SMALLINT CONSTRAINT ck4_ejercicios_en_rutina CHECK (orden_ejercicio IS NULL OR orden_ejercicio > 0),
-    intensidad SMALLINT,
+    intensidad VARCHAR(100) CONSTRAINT ck5_ejercicios_en_rutina CHECK (LOWER(intensidad) IN ('baja', 'media', 'alta')),
     CONSTRAINT pk_ejr PRIMARY KEY (id_rutina, id_ejercicio),
     CONSTRAINT fk1_ejercicios_en_rutina FOREIGN KEY (id_rutina)
         REFERENCES rutinas(id_rutina) ON DELETE CASCADE,
