@@ -1,5 +1,6 @@
 Se requiere una base de datos en PostgreSQL para llevar un control de rutinas de ejercicios en casa y gimnasio. Al mismo tiempo, se espera poder crear
-reportes periodicos (semanal/quincenal/mensual/trimestral/semestral/anual) de cada usuario.
+reportes periodicos (semanal/quincenal/mensual/trimestral/semestral/anual) de cada usuario esto se hará con un resultado en Excel, si es posible con gráficos.
+Paso seguido, se usará POO con Python para crear la interfaz gráfica. Las opciones están con Tkinter o una combinación de HTML, CS5 y Javascript.
 
 Para ello, se requiere:
 
@@ -11,48 +12,58 @@ Para ello, se requiere:
 - Una tabla que soluciona un problema que puede surgir como el de asignar muchos músculos a muchos ejercicios, es decir, una relación muchos a muchos es necesaria una tabla puente
 
 
-TABLA USUARIOS
-	id_usuario: id único, primary key, auto incremental
-	nombre_usuario: nombre o nombres del usuario, ambos nombres pueden ir en un solo ingreso, *máximo 100 letras, ntexto obligatorio
-	apellido_usuario apellidos o apellidos del usuario, ambos apellidos pueden ir en un solo ingreso, máximo 100 letras, texto obligatorio
-	edad_usuario: debe ser un valor numérico entero, con restricción entre 14 y 80, 
-	peso_usuario: debe ser un valor numérico, se admiten números reales, con restricción entre 20 y 250 kilos,
-	estarura_usuario: debe ser un valor numérico, número racional, restricción entre 130 y 220 centimetros,
-	genero_usuario: variable categórica con 3 categorías: masculino, femenino, otro
+CREAR TABLA usuarios:
+    id_usuario: entero auto-incremental, clave primaria
+    nombre_usuario: texto máximo 50 caracteres, obligatorio
+    apellido_usuario: texto máximo 50 caracteres, obligatorio
+    email_usuario: texto máximo 100 caracteres, obligatorio, único
+    edad_usuario: entero entre 14 y 80, obligatorio
+    estatura_usuario: entero entre 130 y 250 cm, obligatorio
+    peso_usuario: decimal(5,2) entre 30.00 y 200.00 kg, obligatorio
+    genero_usuario: texto máximo 10 caracteres, valores permitidos: 'masculino', 'femenino', 'otro'
 
-TABLA GRUPOS_MUSCULARES
-	id_grupo_muscular: id único, primary key, auto incremental
-	nombre_grupo_muscular: texto obligatorio, valor único, máximo 50 caracteres
+CREAR TABLA grupos_musculares:
+    id_grupo: entero pequeño auto-incremental, clave primaria
+    nombre_grupo: texto máximo 100 caracteres, obligatorio, único
 
-TABLA MUSCULOS
-	id_musculo: id único, primary key, auto incremental
-	nombre_musculo: texto obligatorio, valor único, máximo 100 caracteres
-	id_grupo_muscular: llave foranea, se debe relacionar con la tabla de grupos musculares
+CREAR TABLA musculos:
+    id_musculo: entero pequeño auto-incremental, clave primaria
+    nombre_musculo: texto máximo 100 caracteres, obligatorio
+    id_grupo_muscular: entero pequeño, clave foránea hacia grupos_musculares(id_grupo)
 
-TABLA EJERCICIOS
-	id_ejercicio: id único, primary key, auto incremental
-	nombre_ejercicio: nombre en español del ejercicio, texto obligatorio, valor único, máximo 100 caracteres
-	descripcion_ejercicio: descripción del ejercicio, los utensilios necesitados (máquinas o si no)
-	tipo_ejercicio: texto obligatorio, el tipo de ejercicio debe tener solo dos opciones: (casa, gimnasio), valor único
+CREAR TABLA ejercicios:
+    id_ejercicio: entero pequeño auto-incremental, clave primaria
+    nombre_ejercicio: texto máximo 100 caracteres, obligatorio, único
+    descripcion_ejercicio: texto máximo 500 caracteres, obligatorio
+    tipo_ejercicio: texto máximo 50 caracteres, valores permitidos: 'casa', 'gimnasio', 'ambos'
 
 
 - La siguiente tabla es una tabla puente, ya que el proyecto requiere saber qué músculos trabaja cada ejercicio. 
 - Esto genera una relación muchos a muchos; por lo tanto, no sería posible incluir más de un músculo por ejercicio directamente en las tablas de ejercicios o músculos sin romper la normalización.
 - Además, las bases de datos relacionales no permiten relaciones muchos a muchos de forma directa entre dos tablas.
 
-TABLA EJERCICIO_MUSCULO
-	id_ejercicio: valor numérico, máximo 100 caracteres, id del ejercicio que se hará, se introduce manualmente, foreing key 
-	id_musculo: valor numérico, máximo 100 caracteres, id del musculo afectado, se introduce manualmente, es una foreing key
-	funcion: texto único, describe la función del músculo en cada cruce entre ejercicio y músculo (principal, secundario, estabilizador)
-	pk única: Aunque esto es una tabla puenta, el cruce entre músculos y ejercicios es en sí una clave primaria o valor único de esta tabla.
+CREAR TABLA ejercicios_musculos:
+    id_ejercicio: entero pequeño, clave foránea hacia ejercicios(id_ejercicio)
+    id_musculo: entero pequeño, clave foránea hacia musculos(id_musculo)
+    importancia: texto máximo 20 caracteres, valores permitidos: 'principal', 'secundario', 'estabilizador'
+    CLAVE PRIMARIA COMPUESTA: (id_ejercicio, id_musculo)
+    ELIMINAR EN CASCADA al eliminar ejercicio o músculo
 
-TABLA RUTINAS
-	id_rutina: id único, primary key, auto incremental
-	nombre_rutina: texto obligatorio, máximo 100 caracteres
+CREAR TABLA rutinas:
+    id_rutina: entero auto-incremental, clave primaria
+    nombre_rutina: texto máximo 100 caracteres, obligatorio, único
+    descripcion: texto máximo 500 caracteres, obligatorio
+    objetivo: texto máximo 30 caracteres, valores permitidos: 'fuerza', 'hipertrofia', 'resistencia'
+    nivel: texto máximo 20 caracteres, valores permitidos: 'principiante', 'intermedio', 'avanzado'
+    creado_en: timestamp, valor por defecto: fecha/hora actual
 
-TABLA: ejercicios_en_rutina (otra tabla puente)
-    - id_rutina: referencia a rutina
-    - id_ejercicio: referencia a ejercicio
-    - series: número
-    - repeticiones: número
-    - orden: número (para ordenar en la rutina)
+CREAR TABLA ejercicios_en_rutina:
+    id_rutina: entero, clave foránea hacia rutinas(id_rutina)
+    id_ejercicio: entero pequeño, clave foránea hacia ejercicios(id_ejercicio)
+    series: entero pequeño mayor a 0, obligatorio
+    repeticiones: entero pequeño mayor a 0, obligatorio
+    descanso_seg: entero pequeño mayor o igual a 0, opcional
+    orden_ejercicio: entero pequeño mayor a 0, opcional
+    intensidad: texto máximo 100 caracteres, valores permitidos: 'baja', 'media', 'alta'
+    CLAVE PRIMARIA COMPUESTA: (id_rutina, id_ejercicio)
+    ELIMINAR EN CASCADA al eliminar rutina
