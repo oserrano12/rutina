@@ -1,4 +1,110 @@
-body{
-    background: #f1f1f1;
-    font-family: Arimo, sans-serif;
+/* --- Estilo general --- */
+body {
+    font-family: "Arimo", sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
+
+/* --- Header --- */
+header {
+    background: #2d89ef;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+}
+
+/* --- Navbar --- */
+nav {
+    background: #f0f0f0;
+    padding: 10px;
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+nav ul li a:hover {
+    color: #2d89ef;
+}
+
+/* --- Main Content --- */
+.main-content {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* --- Tarjetas --- */
+section {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px #21212188;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #000000cc;
+}
+
+/* Variantes de color */
+.card.azul {
+    background: #baf1ff55;
+}
+.card.verde {
+    background: #cfffd966;
+}
+
+/* --- Inputs --- */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+    color: #000000aa;
+}
+
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #30303077;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus {
+    border-color: #0077ff;
+    outline: none;
+    box-shadow: 0 0 4px #2d89ef;
+}
+
+/* --- Grillas internas --- */
+.medidas-tronco,
+.medidas-brazos,
+.medidas-piernas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+    margin-bottom: 15px;
+}
+
