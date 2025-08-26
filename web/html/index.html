@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Este archivo html contendrá el contenido de la página web que dará la interfaz de usuario para el proyecto de la aplicacion de rutinas.">
+    <meta name="keywords" content="rutinas, ejercicio, salud, bienestar">
+    <meta name="author" content="Oscar Serrano - Jordy Jaimes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="../recursos/rutina.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Rutina</title>
+</head>
+<body>
+    <h1>Registro de Progreso</h1>
+    <main class="main-content">
+        <section class="fecha-medicion">
+            <h2>Fecha de Medición</h2>
+            <input type="date" id="fecha-medicion" name="fecha_medicion" class="fecha-medicion-input" placeholder="dd/mm/aaaa">
+        </section>
+
+        <section class="peso-corporal">
+            <h2>Peso Corporal</h2>
+            <label for="peso">Peso (kg)</label>
+            <div class="input-with-unit">
+                <input type="number" id="peso" name="peso" step="0.1" inputmode="decimal" placeholder="65.5">
+            </div>
+        </section>
+
+        <section class="medidas-corporales">
+            <h2>Medidas Corporales</h2>
+            <div class="grid-medidas">
+                <div class="control">
+                    <label for="pecho">Pecho (cm)</label>
+                    <input type="number" id="pecho" name="pecho" step="0.1" inputmode="decimal" placeholder="95.0">
+                </div>
+
+                <div class="control">
+                    <label for="cintura">Cintura (cm)</label>
+                    <input type="number" id="cintura" name="cintura" step="0.1" inputmode="decimal" placeholder="78.0">
+                </div>
+
+                <div class="control">
+                    <label for="brazo-d">Brazo Derecho (cm)</label>
+                    <input type="number" id="brazo-d" name="brazo_d" step="0.1" inputmode="decimal" placeholder="30.0">
+                </div>
+                <div class="control">
+                    <label for="brazo-i">Brazo Izquierdo (cm)</label>
+                    <input type="number" id="brazo-i" name="brazo_i" step="0.1" inputmode="decimal" placeholder="31.0">
+                </div>
+
+                <div class="control">
+                    <label for="muslo-d">Muslo Derecho (cm)</label>
+                    <input type="number" id="muslo-d" name="muslo_d" step="0.1" inputmode="decimal" placeholder="55.0">
+                </div>
+
+                <div class="control">
+                    <label for="muslo-i">Muslo Izquierdo (cm)</label>
+                    <input type="number" id="muslo-i" name="muslo_i" step="0.1" inputmode="decimal" placeholder="56.0">
+                </div>
+            </div>
+        </section>
+        <div class="button-container">
+            <button class="bt" id="bt">
+                <span class="msg" id="msg"></span> ENVIAR
+            </button>
+        </div>
+    </main>
+</body>
+</html>
