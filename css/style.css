@@ -1,0 +1,102 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    color: #333;
+    background-color: #FDF4E3;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #FEB21A;
+    justify-content: space-between;
+}
+
+/* Título a la izquierda */
+.header-left h1 {
+    font-size: 1.8rem;
+    color: #FDF4E3;
+}
+
+/* Nav ocupa todo el espacio restante */
+.menu {
+    display: flex;
+    justify-content: center;
+}
+
+/* NAV */
+.nav-links {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    max-width: 600px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cada item del nav */
+.nav-item {
+    margin: 0 15px;
+}
+
+/* MAIN */
+.main-content {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* Article Centrado */
+.article {
+    flex: 3;
+}
+
+/* Aside a la derecha */
+.sidebar {
+    flex: 1;
+}
+
+/* Footer centrado */
+.footer {
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #FDF4E3;
+}
+
+/* Header Right */
+.header-right {
+    text-align: right;
+}
+
+.sidebar-link {
+    list-style: none;
+}
+
+.sidebar-link a {
+    text-decoration: none;
+    color: #FEB21A;
+    font-weight: bold;
+}
+
+.fab {
+    color: #FEB21A;
+    padding: 8px;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
